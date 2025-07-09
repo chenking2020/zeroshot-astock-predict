@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname((os.path.abspath(__file__))))
 
 def get_stock_hisdata(code, start_time_str="20250601", end_time_str="20250701"):
 
-    req_url = "https://q.stock.sohu.com/hisHq?code=cn_{}&start={}&end={}&stat=1&period=d&crt=json".format(
+    req_url = "https://q.stock.sohu.com/hisHq?code={}&start={}&end={}&stat=1&period=d&crt=json".format(
         code, start_time_str, end_time_str
     )
     query_req = requests.get(req_url)
@@ -49,13 +49,13 @@ def get_stock_hisdata(code, start_time_str="20250601", end_time_str="20250701"):
         batch_data,
         columns=["date", "open", "high", "low", "close", "pct_change", "volume"],
     )
-    return result_data
+    return result_data.iloc[::-1]
 
 
 if __name__ == "__main__":
 
-    code = "zs_000001"  # 如果是获取指数，zs_000001代表上证、zs_399001代表深证、zs_399006代表创业板、zs_000680代表科创板，普通股票直接股票代码，如600001
-    start_time_str = "20250601"
+    code = "zs_000680"  # 如果是获取指数，zs_000001代表上证、zs_399001代表深证、zs_399006代表创业板、zs_000680代表科创板，普通股票直接股票代码，如600001
+    start_time_str = "20240601"
     end_time_str = "20250701"
     for i in range(len(sys.argv)):
         if sys.argv[i] == "-start_time":
@@ -68,4 +68,4 @@ if __name__ == "__main__":
             continue
     print("获取{}从{}到{}的历史数据...".format(code, start_time_str, end_time_str))
     his_data = get_stock_hisdata(code, start_time_str, end_time_str)
-    print(his_data)
+    his_data.to_csv("{}.csv".format(code), index=False, encoding="utf-8")
