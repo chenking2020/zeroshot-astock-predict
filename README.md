@@ -28,7 +28,7 @@ code为股票代码，如果普通个股，为cn_+普通数字股票代码，如
 
 data_file_path为股票历史数据所在的文件绝对路径，默认为本开源代码提供的测试样例
 
-module_name预测模型名称，默认为chronos_bolt_model，具体支持模型见下面说明
+module_name预测模型名称，默认为arima，具体支持模型见下面说明
 
 如果没有数据，本开源项目提供股票数据获取脚本
 
@@ -40,7 +40,11 @@ python stock_hisdata_get.py -code cn_600517 -start_time_str 20240601 -end_time_s
 
 ## 支持模型
 
-**1. chronos_bolt_model**
+**1. arima**
+
+ARIMA（Autoregressive Integrated Moving Average）是一种广泛应用于时间序列预测的统计模型，其基本原理结合了自回归（AR）、差分（I）和移动平均（MA）三个核心概念。自回归（AR）部分通过历史观测值的线性组合来捕捉序列的自相关性；差分（I）处理非平稳性问题，通过对原始序列进行差分转换使其变为平稳序列；移动平均（MA）则利用过去预测误差的线性组合来提高预测精度。ARIMA 模型的参数 (p,d,q) 分别对应自回归阶数、差分阶数和移动平均阶数，通过这三个参数的合理选择，模型能够适应不同特性的时间序列数据，从而实现对未来值的有效预测。
+
+**2. chronos_bolt_model**
 
 Chronos-Bolt-Base 是基于 T5 架构的时间序列预测模型。它在近 1000 亿个时间序列观测数据上进行训练，通过将历史时间序列上下文分块输入编码器，解码器直接生成分位数预测，相比原始 Chronos 模型快 250 倍，内存效率高 20 倍。该模型零样本预测能力出色，在 27 个数据集上优于常用统计模型和深度学习模型，且预测精度比原始 Chronos（Large）模型更高。
 
@@ -72,7 +76,13 @@ predictor = TimeSeriesPredictor(
 
 ## 模型效果评测对比
 
-稍加等待
+模型评测集选取包括主要指数和典型的个股一共100个数据，用RMSE进行评测，RMSE越小模型预测效果越好，结果如下（按照RMSE升序排列）
+
+模型名称| RMSE   
+-|-|
+ARIMA | 待评测
+chronos_bolt_model | 待评测
+
 
 ## Star历史
 
