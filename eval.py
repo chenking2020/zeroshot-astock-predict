@@ -11,8 +11,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == "__main__":
 
-    # module_name = "chronos_bolt_model"
-    module_name = "arima"
+    module_name = "chronos_bolt_model"
+    # module_name = "arima"
 
     for i in range(len(sys.argv)):
         if sys.argv[i] == "-module_name":
@@ -26,9 +26,9 @@ if __name__ == "__main__":
         sys.exit(1)
 
     squared_errors = []
-    for filename in os.listdir(os.path.join(BASE_DIR, "data/all-eval-data")):
+    for filename in os.listdir(os.path.join(BASE_DIR, "data/eval")):
         if filename.endswith(".csv"):
-            filepath = os.path.join(BASE_DIR, "data/all-eval-data", filename)
+            filepath = os.path.join(BASE_DIR, "data/eval", filename)
             df = pd.read_csv(filepath, encoding="utf-8")
             pre_values = model.predict(filename.split(".")[0], df.iloc[:-10, :])
             true_values = df.iloc[-10:, :]["close"].values.tolist()

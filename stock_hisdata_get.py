@@ -54,7 +54,7 @@ def get_stock_hisdata(code, start_time_str="20250601", end_time_str="20250701"):
 
 if __name__ == "__main__":
 
-    code = "zs_000680"  # 如果是获取指数，zs_000001代表上证、zs_399001代表深证、zs_399006代表创业板、zs_000680代表科创板，普通股票直接股票代码，如600001
+    code = "zs_000001"  # 如果是获取指数，zs_000001代表上证、zs_399001代表深证、zs_399006代表创业板、zs_000680代表科创板，普通股票直接股票代码，如600001
     start_time_str = "20240601"
     end_time_str = "20250701"
     for i in range(len(sys.argv)):

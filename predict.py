@@ -8,8 +8,8 @@ sys.path.append(os.path.dirname((os.path.abspath(__file__))))
 
 if __name__ == "__main__":
 
-    code = "zs_000001"
-    data_file_path = "zs_000001.csv"
+    code = "cn_601066"
+    data_file_path = "cn_601066.csv"
     module_name = "chronos_bolt_model"
 
     for i in range(len(sys.argv)):
