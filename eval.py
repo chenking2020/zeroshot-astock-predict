@@ -11,8 +11,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == "__main__":
 
-    module_name = "chronos_bolt_model"
-    # module_name = "arima"
+    # module_name = "chronos_bolt_model"
+    module_name = "arima"
 
     for i in range(len(sys.argv)):
         if sys.argv[i] == "-module_name":

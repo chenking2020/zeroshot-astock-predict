@@ -12,6 +12,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def predict(code, prices):
-    predictor = ARIMA(prices["close"], order=(5, 1, 0)).fit()
+    predictor = ARIMA(prices["close"], order=(6, 1, 6)).fit()
     predictions = predictor.forecast(steps=predict_days)
     return predictions.iloc[-predict_days:].values.tolist()
